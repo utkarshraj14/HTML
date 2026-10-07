@@ -1,7 +1,9 @@
 /* styles.css */
 body {
   font-family: Arial, sans-serif;
-  background-color: #6b7981;
+  background: #0c0c6d;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #023c0d, #5bb226, #98d0c1, #de512b, #0c0c6d);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #023c0d, #5bb226, #98d0c1, #de512b, #0c0c6d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 h1 {
