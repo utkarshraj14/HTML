@@ -7,8 +7,8 @@ background: linear-gradient(to right, #023c0d, #5bb226, #98d0c1, #de512b, #0c0c6
 }
 
 h1 {
-  color: #cc0000;
-}
+  color: #cc0000 ; background:#98d0c1;
+} 
 h2 {
   color: #aa00cc;
 }
