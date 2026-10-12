@@ -1,0 +1,30 @@
+.underline-text    { text-decoration: underline; }
+.overline-text     { text-decoration: overline; }
+.line-through-text { text-decoration: line-through; }
+.no-decoration     { text-decoration: none; }
+
+.container {
+  width: 300px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.center-text {
+  text-align: center;
+  text-align-last: left;
+}
+
+.container {
+  height: 200px;
+  line-height: 200px;
+  border: 3px solid #ccc;
+}
+
+.middle-text {
+  vertical-align: top;
+}
+.uppercase-text  { text-transform: uppercase; }
+.capitalize-text { text-transform: capitalize; }
+
+.container         { line-height: 1.5; }
+.large-line-height { line-height: 2; }

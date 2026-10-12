@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mirai School of Technology | 未来工科大学 • Gamified Academy</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&family=Noto+Serif+JP:wght@600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets & Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/hero-gate.css">
+    <link rel="stylesheet" href="css/games.css">
+</head>
+<body>
+    <!-- Anime Speedlines Flash Overlay -->
+    <div class="anime-speedlines-overlay" id="animeSpeedlines"></div>
+
+    <!-- TOP HEADER & HUD -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="brand-block" onclick="window.switchSection('heroSection')">
+                <div class="brand-crest">⛩️</div>
+                <div class="brand-titles">
+                    <span class="brand-kanji">未来工科大学 • NEO-TOKYO</span>
+                    <span class="brand-name">MIRAI <span>TECH</span></span>
+                </div>
+            </div>
+
+            <nav class="main-nav">
+                <a href="#hero" class="nav-link active" data-section="heroSection">THE GATES</a>
+                <a href="#arcade" class="nav-link" data-section="arcadeSection">ARCADE (17 GAMES)</a>
+                <a href="#daily" class="nav-link" data-section="dailySection">DAILY TRIAL</a>
+                <a href="#leagues" class="nav-link" data-section="leaguesSection">LEAGUES</a>
+                <a href="#battles" class="nav-link" data-section="battleSection">GUILD WAR</a>
+                <a href="#faculty" class="nav-link" data-section="facultySection">FACULTY</a>
+                <a href="#admin" class="nav-link" data-section="adminSection">XP RULES</a>
+                <a href="#profile" class="nav-link" data-section="profileSection">PROFILE</a>
+            </nav>
+
+            <div class="header-hud">
+                <button class="sound-toggle-btn" id="soundToggleBtn" title="Toggle dark synth & fire audio atmosphere">
+                    <span>🔊 SOUND ON</span>
+                </button>
+
+                <div class="cadet-hud-pill" onclick="window.switchSection('profileSection')" title="View Cadet Dossier & Badges">
+                    <div class="hud-avatar" id="headerAvatar">⚔️</div>
+                    <div class="hud-values">
+                        <span class="hud-level" id="headerLevel">LVL 5</span>
+                        <span class="hud-xp" id="headerXP">685 XP</span>
+                        <span class="hud-streak" id="headerStreak">6 Days 🔥</span>
+                        <span class="hud-freezes" id="headerFreezes" title="Streak Freezes Available">2 🛡️</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="app-main">
+
+        <!-- ===================================================================
+             1. HERO GATE EXPERIENCE: TOWERING GATES PART IN RED SMOKE & FIRELIGHT
+             =================================================================== -->
+        <section class="app-section active hero-gate-section" id="heroSection">
+            <div class="hero-gate-wrapper" id="heroGateWrapper">
+                <!-- Background Fire Backdrop -->
+                <div class="gate-scenery-backdrop">
+                    <div class="shrine-silhouette">
+                        <div class="temple-arch"></div>
+                        <div class="oni-mask-crest">👹</div>
+                    </div>
+                </div>
+
+                <!-- 3D Interactive Three.js Cyber Shrine Viewport -->
+                <div class="hero-3d-viewport-wrap">
+                    <canvas id="hero3DCanvas" class="hero-3d-canvas"></canvas>
+                </div>
+
+                <!-- Interactive Particle & Cloth Canvas -->
+                <canvas class="gate-canvas" id="gateCanvas"></canvas>
+
+                <!-- Physical Heavy Split Gate Doors -->
+                <div class="physical-gate-doors">
+                    <div class="gate-door left" id="gateDoorLeft">
+                        <div class="door-panel-texture"></div>
+                        <div class="door-runes">未来工科門 • 勇気 • 知性</div>
+                    </div>
+                    <div class="gate-door right" id="gateDoorRight">
+                        <div class="door-panel-texture"></div>
+                        <div class="door-runes">鉄の論理 • 絶望を棄てよ</div>
+                    </div>
+                </div>
+
+                <!-- Hero Dramatic Prose Layer -->
+                <div class="hero-content-layer">
+                    <div class="hero-relic-badge">RELIC 01 • LA PORTE DE L'ENFER • MIRAI ARCHIVES, 2026</div>
+                    <h1 class="hero-main-heading">
+                        Abandon all bugs,<br>
+                        <em>ye who enter here.</em>
+                    </h1>
+                    <p class="hero-prose">
+                        Towering gates part in red smoke and firelight, motion heavy enough to feel like a warning — 
+                        a crucible for coders who want to be remembered, not just noticed. Master 17 interactive trials across 
+                        C++ Algorithms and Web Architecture.
+                    </p>
+                    <div class="hero-drag-prompt">
+                        <span>⚡ Drag mouse through the glowing opening to disturb the inscription curtain.</span>
+                    </div>
+                    <div class="hero-actions-row">
+                        <button class="enter-gate-btn" id="enterGateBtn">
+                            ENTER THE GATES / 開門 ➔
+                        </button>
+                        <button class="secondary-btn" onclick="window.switchSection('dailySection')">
+                            DAILY SPEED TRIAL ⚡
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Side Tuning Drawer (Matching Scrolltide Curtain Reference) -->
+                <aside class="curtain-side-panel" id="curtainSidePanel">
+                    <div class="panel-header-row">
+                        <div>
+                            <span class="panel-brand-tag">SCROLLTIDE // PHYSICS</span>
+                            <h3 class="panel-title">Curtain Controls</h3>
+                        </div>
+                    </div>
+
+                    <!-- Weave Sliders -->
+                    <div class="ctrl-group">
+                        <div class="ctrl-section-label">
+                            <span>WEAVE</span>
+                            <span class="ctrl-section-sub">Rebuilds the sheet</span>
+                        </div>
+
+                        <div class="slider-item">
+                            <div class="slider-label-row">
+                                <span>Gate Parting / 開門</span>
+                                <span class="slider-val" id="valGateParting">0%</span>
+                            </div>
+                            <input type="range" min="0" max="1" step="0.01" value="0" class="gate-slider" id="ctrlGateParting">
+                        </div>
+
+                        <div class="slider-item">
+                            <div class="slider-label-row">
+                                <span>Text size</span>
+                                <span class="slider-val" id="valTextSize">9.00</span>
+                            </div>
+                            <input type="range" min="6" max="18" step="0.5" value="9" class="gate-slider" id="ctrlTextSize">
+                        </div>
+
+                        <div class="slider-item">
+                            <div class="slider-label-row">
+                                <span>Glyph weight</span>
+                                <span class="slider-val" id="valGlyphWeight">0.80</span>
+                            </div>
+                            <input type="range" min="0.2" max="1.5" step="0.05" value="0.8" class="gate-slider" id="ctrlGlyphWeight">
+                        </div>
+
+                        <div class="slider-item">
+                            <div class="slider-label-row">
+                                <span>Fraying / Turbulence</span>
+                                <span class="slider-val" id="valFraying">0.10</span>
+                            </div>
+                            <input type="range" min="0.01" max="0.5" step="0.01" value="0.1" class="gate-slider" id="ctrlFraying">
+                        </div>
+                    </div>
+
+                    <!-- Cloth & Atmosphere Sliders -->
+                    <div class="ctrl-group">
+                        <div class="ctrl-section-label">
+                            <span>CLOTH & ATMOSPHERE</span>
+                        </div>
+
+                        <div class="slider-item">
+                            <div class="slider-label-row">
+                                <span>Gravity</span>
+                                <span class="slider-val" id="valGravity">0.10</span>
+                            </div>
+                            <input type="range" min="0" max="0.5" step="0.01" value="0.1" class="gate-slider" id="ctrlGravity">
+                        </div>
+
+                        <div class="slider-item">
+                            <div class="slider-label-row">
+                                <span>Damping</span>
+                                <span class="slider-val" id="valDamping">0.955</span>
+                            </div>
+                            <input type="range" min="0.8" max="0.99" step="0.005" value="0.955" class="gate-slider" id="ctrlDamping">
+                        </div>
+
+                        <div class="slider-item">
+                            <div class="slider-label-row">
+                                <span>Red Smoke Density</span>
+                                <span class="slider-val" id="valSmoke">35</span>
+                            </div>
+                            <input type="range" min="10" max="80" step="5" value="35" class="gate-slider" id="ctrlSmoke">
+                        </div>
+
+                        <div class="slider-item">
+                            <div class="slider-label-row">
+                                <span>Fire Ember Heat</span>
+                                <span class="slider-val" id="valHeat">1.0</span>
+                            </div>
+                            <input type="range" min="0.2" max="2.5" step="0.1" value="1.0" class="gate-slider" id="ctrlHeat">
+                        </div>
+                    </div>
+
+                    <div class="panel-footer-row">
+                        <span class="stats-coords">1040 points • 28×18 • 11px</span>
+                        <button class="reset-physics-btn" id="btnResetPhysics">RESET</button>
+                    </div>
+                </aside>
+
+                <button class="panel-toggle-tab" id="toggleCurtainPanelBtn">⚙️ CURTAIN</button>
+            </div>
+        </section>
+
+
+        <!-- ===================================================================
+             2. GAMES ARCADE HUB (ALL 17 GAMES & 170 QUESTIONS)
+             =================================================================== -->
+        <section class="app-section" id="arcadeSection">
+            <div class="content-container">
+                <div class="section-intro-block">
+                    <span class="section-tagline">CURRICULUM COMBAT SIMULATION</span>
+                    <h2 class="section-title">THE 17 SACRED TRIAL CHAMBERS</h2>
+                    <p class="section-subtitle">
+                        7 Mastery Games for C++ DSA (Input/Output through Functions) and 10 Architecture Games for Web HTML. 
+                        Each game contains 10 rigorous challenges with instant feedback and unique visual mechanics.
+                    </p>
+                </div>
+
+                <!-- Interactive 3D Holographic Showcase Card -->
+                <div class="arcade-3d-showcase scroll-reveal">
+                    <div class="showcase-info-block">
+                        <span class="showcase-tag">⚡ 3D HOLOGRAPHIC STAGE</span>
+                        <h3 class="showcase-title">INTERACTIVE CURRICULUM VAULT</h3>
+                        <p class="showcase-desc">
+                            Select any of the 17 mission sectors to render real-time 3D models. 
+                            Hover and drag to rotate the holographic battle card in 3D perspective space.
+                        </p>
+                        <button class="primary-btn" onclick="window.miraiGame.openGame('game_cpp_3')">
+                            CHALLENGE 3D BOSS BATTLE ➔
+                        </button>
+                    </div>
+                    <div class="showcase-interactive-hologram">
+                        <div class="holo-card-mesh" onclick="if(window.miraiAudio) window.miraiAudio.playTilt();">
+                            <span class="holo-crest">👹</span>
+                            <span class="holo-label">MECHA ONI-09</span>
+                            <span style="font-size: 10px; color: var(--cyber-cyan); letter-spacing: 1px;">3D VIEWPORT ACTIVE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Track Filter Tabs -->
+                <div class="arcade-filter-bar">
+                    <button class="filter-tab-btn active" onclick="window.miraiPlatform.setFilter('all', this)">ALL 17 GAMES</button>
+                    <button class="filter-tab-btn" onclick="window.miraiPlatform.setFilter('cpp', this)">DSA IN C++ (7 TOPICS)</button>
+                    <button class="filter-tab-btn" onclick="window.miraiPlatform.setFilter('html', this)">WEB HTML (10 TOPICS)</button>
+                    <button class="filter-tab-btn" onclick="window.miraiPlatform.setFilter('completed', this)">COMPLETED BADGES</button>
+                </div>
+
+                <!-- 17 Game Cards Grid -->
+                <div class="arcade-cards-grid" id="arcadeGrid"></div>
+            </div>
+        </section>
+
+
+        <!-- ===================================================================
+             3. DAILY TRIAL ARENA (SPEED QUIZ & STREAKS)
+             =================================================================== -->
+        <section class="app-section" id="dailySection">
+            <div class="content-container" id="dailyQuizSection"></div>
+        </section>
+
+
+        <!-- ===================================================================
+             4. WEEKLY LEAGUES & ANONYMOUS MODE
+             =================================================================== -->
+        <section class="app-section" id="leaguesSection">
+            <div class="content-container">
+                <div class="section-intro-block">
+                    <span class="section-tagline">COMPETITIVE TIERS & ACADEMIC FAIRNESS</span>
+                    <h2 class="section-title">WEEKLY CADET LEAGUES</h2>
+                    <p class="section-subtitle">
+                        Cohorts of ~20 students compete weekly. Top 3 promote to higher divisions; bottom 3 face relegation. 
+                        Enable Anonymous Mode to safeguard your identity while maintaining competitive drive.
+                    </p>
+                </div>
+
+                <div class="leagues-wrapper">
+                    <div class="leagues-top-bar">
+                        <div class="league-tier-tabs">
+                            <button class="tier-tab active">💎 DIAMOND LEAGUE</button>
+                            <button class="tier-tab">🏆 PLATINUM</button>
+                            <button class="tier-tab">🥇 GOLD</button>
+                            <button class="tier-tab">🥈 SILVER</button>
+                            <button class="tier-tab">🥉 BRONZE</button>
+                        </div>
+
+                        <div class="league-privacy-toggle">
+                            <label class="switch-lbl">
+                                <input type="checkbox" id="anonModeToggle" onchange="window.miraiPlatform.toggleAnonymousMode()">
+                                <span>Anonymous Mode (Alias: <strong>CyberSamurai_904</strong>)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="league-table-wrap">
+                        <table class="league-table">
+                            <thead>
+                                <tr>
+                                    <th>RANK</th>
+                                    <th>TREND</th>
+                                    <th>CADET NAME</th>
+                                    <th>STREAK</th>
+                                    <th>WEEKLY XP</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leagueTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ===================================================================
+             5. FACTION / TEAM BATTLES (REAL-TIME CLASH)
+             =================================================================== -->
+        <section class="app-section" id="battleSection">
+            <div class="content-container" id="teamBattleSection"></div>
+        </section>
+
+
+        <!-- ===================================================================
+             6. FACULTY DASHBOARD & ACADEMIC INTEGRITY
+             =================================================================== -->
+        <section class="app-section" id="facultySection">
+            <div class="content-container" id="facultyDashboardSection"></div>
+        </section>
+
+
+        <!-- ===================================================================
+             7. ADMIN XP ECONOMY RULES CONSOLE
+             =================================================================== -->
+        <section class="app-section" id="adminSection">
+            <div class="content-container" id="adminRulesSection"></div>
+        </section>
+
+
+        <!-- ===================================================================
+             8. STUDENT PROFILE & 17 BADGES VAULT
+             =================================================================== -->
+        <section class="app-section" id="profileSection">
+            <div class="content-container" id="profileCardContainer"></div>
+        </section>
+
+    </main>
+
+    <!-- ===================================================================
+         INTERACTIVE GAME RUNTIME MODAL
+         =================================================================== -->
+    <div class="game-modal-overlay" id="gameModal">
+        <div class="game-arena-card" id="gameArenaContainer">
+            <!-- Dynamically populated by window.miraiGame -->
+        </div>
+    </div>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Application Scripts -->
+    <script src="js/audio.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/games-data.js"></script>
+    <script src="js/three-viewport.js"></script>
+    <script src="js/gate-canvas.js"></script>
+    <script src="js/game-engine.js"></script>
+    <script src="js/scroll-animations.js"></script>
+    <script src="js/platform.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
